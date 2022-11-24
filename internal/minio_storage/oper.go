@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func CreateBucket(_ context.Context, minio *minio.Client, bucketName string) (err error) {
+func CreateBucket(_ context.Context, minio *minio.Client, bucketName string) error {
 	exists, err := minio.BucketExists(bucketName)
 	if err != nil {
 		return err

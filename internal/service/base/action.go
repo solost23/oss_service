@@ -57,6 +57,10 @@ func (a *Action) GetSl() *slog.SugaredLogger {
 	return a.sl
 }
 
+func (a *Action) GetMinioClient() *minio.Client {
+	return a.minioClient
+}
+
 func (a *Action) GetTraceId() int64 {
 	return a.traceId
 }
