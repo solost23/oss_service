@@ -3,6 +3,7 @@ package base
 import (
 	"context"
 	"github.com/gookit/slog"
+	"github.com/minio/minio-go"
 
 	"gorm.io/gorm"
 
@@ -17,6 +18,7 @@ type Action struct {
 	mysqlConnect  *gorm.DB
 	redisClient   *redis.Client
 	kafkaProducer sarama.SyncProducer
+	minioClient   *minio.Client
 	traceId       int64
 	operator      int32
 }
@@ -40,6 +42,10 @@ func (a *Action) SetHeader(header *common.RequestHeader) {
 func (a *Action) SetMysql(mysqlConn *gorm.DB) {
 	a.mysqlConnect = mysqlConn.WithContext(a.ctx)
 	return
+}
+
+func (a *Action) SetMinio(minioClient *minio.Client) {
+	a.minioClient = minioClient
 }
 
 func (a *Action) SetkafkaProducer(kafkaProducer sarama.SyncProducer) {

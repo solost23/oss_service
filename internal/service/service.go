@@ -5,6 +5,7 @@ import (
 	"github.com/Shopify/sarama"
 	"github.com/go-redis/redis"
 	"github.com/gookit/slog"
+	"github.com/minio/minio-go"
 	"github.com/solost23/go_interface/gen_go/oss"
 	"gorm.io/gorm"
 	"oss_service/internal/service/upload"
@@ -15,15 +16,17 @@ type OSSService struct {
 	mdb           *gorm.DB
 	rdb           *redis.Client
 	kafkaProducer sarama.SyncProducer
+	minioClient   *minio.Client
 	oss.UnimplementedOssServer
 }
 
-func NewOSSService(sl *slog.SugaredLogger, mdb *gorm.DB, rdb *redis.Client, kafkaProducer sarama.SyncProducer) *OSSService {
+func NewOSSService(sl *slog.SugaredLogger, mdb *gorm.DB, rdb *redis.Client, kafkaProducer sarama.SyncProducer, minioClient *minio.Client) *OSSService {
 	return &OSSService{
 		sl:            sl,
 		mdb:           mdb,
 		rdb:           rdb,
 		kafkaProducer: kafkaProducer,
+		minioClient:   minioClient,
 	}
 }
 
@@ -33,5 +36,6 @@ func (h *OSSService) Upload(ctx context.Context, request *oss.UploadRequest) (re
 	action.SetHeader(request.Header)
 	action.SetSl(h.sl)
 	action.SetMysql(h.mdb)
+	action.SetMinio(h.minioClient)
 	return action.Deal(ctx, request)
 }

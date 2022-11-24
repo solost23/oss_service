@@ -13,6 +13,7 @@ import (
 	"os/signal"
 	"oss_service/configs"
 	"oss_service/internal/handler"
+	"oss_service/internal/minio_storage"
 	"oss_service/internal/models"
 	"oss_service/pkg/helper"
 	"runtime"
@@ -39,11 +40,14 @@ func (s *Server) Run() {
 	// 初始化mysql redis链接
 	mdb, err := models.InitMysql(s.serverConfig.MySQLConfig)
 	must(err)
+	minio, err := minio_storage.NewMinio(s.serverConfig.MinioConfig)
+	must(err)
 	// 初始化 handler
 	err = handler.Init(handler.Config{
 		Server:       server,
 		Sl:           s.sl,
 		MysqlConnect: mdb,
+		MinioClient:  minio,
 	})
 	must(err)
 	// 随机获取ip 地址和 未占用端口

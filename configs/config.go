@@ -6,7 +6,7 @@ type ServerConfig struct {
 	TimeLocation string      `mapstructure:"time_location"`
 	MySQLConfig  *MySQLConf  `mapstructure:"mysql"`
 	ConsulConfig *ConsulConf `mapstructure:"consul"`
-	MinioConfig  *MinioConf  `mapstructure:"minio"`
+	MinioConfig  *MinioConf  `mapstructure:"minio_storage"`
 }
 
 type MySQLConf struct {

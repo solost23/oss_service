@@ -4,6 +4,7 @@ import (
 	"github.com/Shopify/sarama"
 	"github.com/go-redis/redis"
 	"github.com/gookit/slog"
+	"github.com/minio/minio-go"
 	"google.golang.org/grpc"
 	"gorm.io/gorm"
 )
@@ -14,4 +15,5 @@ type Config struct {
 	MysqlConnect  *gorm.DB
 	RedisClient   *redis.Client
 	KafkaProducer sarama.SyncProducer
+	MinioClient   *minio.Client
 }

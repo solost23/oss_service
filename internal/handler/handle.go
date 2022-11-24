@@ -7,6 +7,6 @@ import (
 
 func Init(config Config) (err error) {
 	// 1.gRPC::user service
-	oss.RegisterOssServer(config.Server, service.NewOSSService(config.Sl, config.MysqlConnect, config.RedisClient, config.KafkaProducer))
+	oss.RegisterOssServer(config.Server, service.NewOSSService(config.Sl, config.MysqlConnect, config.RedisClient, config.KafkaProducer, config.MinioClient))
 	return
 }
