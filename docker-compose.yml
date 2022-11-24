@@ -5,10 +5,10 @@ services:
     build: "."
     restart: always
     volumes:
-      - "/Users/ty/server/oss/configs:/configs"
-      - "/Users/ty/server/oss/logs:/logs"
+      - "/Users/ty/server/oss_service/configs:/configs"
+      - "/Users/ty/server/oss_service/logs:/logs"
         # 挂载证书
-      - "/Users/ty/server/oss/certs:/etc/ssl/certs/"
+      - "/Users/ty/server/oss_service/certs:/etc/ssl/certs/"
     depends_on:
       - mariadb
       - consul
