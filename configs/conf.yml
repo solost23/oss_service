@@ -1,0 +1,13 @@
+name: "oss_service"
+mode: "debug"
+time_location: "Asia/Shanghai"
+
+consul:
+  host: "consul"
+  port: 8500
+
+mysql:
+  dsn: "root:123@tcp(mariadb:3306)/oss_service?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai"
+  max_open_conn: 20
+  max_idle_conn: 10
+  max_conn_life_time: 100
