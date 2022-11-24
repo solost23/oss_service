@@ -7,6 +7,7 @@ import (
 	"github.com/solost23/go_interface/gen_go/oss"
 	"net/url"
 	"oss_service/internal/minio_storage"
+	"oss_service/internal/models"
 	"oss_service/internal/service/base"
 	"time"
 )
@@ -40,5 +41,14 @@ func (a *Action) Deal(ctx context.Context, request *oss.UploadRequest) (reply *o
 		Url: fileUrl,
 		Key: request.GetKey(),
 	}
+	// 记录日志
+	err = (&models.OSSFile{
+		CreatorBase: models.CreatorBase{
+			CreatorId: uint(request.GetHeader().GetOperatorUid()),
+		},
+		SaveName: request.GetKey(),
+		SavePath: request.GetFolder(),
+		FileType: request.GetUploadType(),
+	}).Insert(a.GetMysqlConnect())
 	return reply, nil
 }

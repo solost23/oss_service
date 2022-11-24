@@ -7,6 +7,7 @@ import (
 	"github.com/solost23/go_interface/gen_go/oss"
 	"oss_service/configs"
 	"oss_service/internal/minio_storage"
+	"oss_service/internal/models"
 	"testing"
 )
 
@@ -20,6 +21,12 @@ func TestAction_Deal(t *testing.T) {
 	if err != nil {
 		t.Error(err.Error())
 	}
+	mdb, _ := models.InitMysql(&configs.MySQLConf{
+		DataSourceName:  "root:123@tcp(localhost:3306)/oss_service?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai",
+		MaxOpenConn:     20,
+		MaxIdleConn:     10,
+		MaxConnLifeTime: 100,
+	})
 	type arg struct {
 		ctx     context.Context
 		request *oss.UploadRequest
@@ -53,6 +60,7 @@ func TestAction_Deal(t *testing.T) {
 	}
 	action := NewActionWithCtx(context.Background())
 	action.SetMinio(minioClient)
+	action.SetMysql(mdb)
 	for _, test := range tests {
 		reply, err := action.Deal(test.arg.ctx, test.arg.request)
 		if err != test.want.err {
