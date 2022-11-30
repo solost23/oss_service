@@ -36,7 +36,8 @@ func NewServer(serverConfig *configs.ServerConfig, sl *slog.SugaredLogger) *Serv
 }
 
 func (s *Server) Run() {
-	server := grpc.NewServer(grpc.MaxRecvMsgSize(1024 * 1024 * 1024 * 1024 * 20))
+	// 设置grpc接收文件大小限制为2GB
+	server := grpc.NewServer(grpc.MaxRecvMsgSize(1024 * 1024 * 1024 * 2))
 	// 初始化mysql redis链接
 	mdb, err := models.InitMysql(s.serverConfig.MySQLConfig)
 	must(err)
