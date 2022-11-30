@@ -36,7 +36,7 @@ func NewServer(serverConfig *configs.ServerConfig, sl *slog.SugaredLogger) *Serv
 }
 
 func (s *Server) Run() {
-	server := grpc.NewServer()
+	server := grpc.NewServer(grpc.MaxRecvMsgSize(1024 * 1024 * 1024 * 1024 * 20))
 	// 初始化mysql redis链接
 	mdb, err := models.InitMysql(s.serverConfig.MySQLConfig)
 	must(err)
