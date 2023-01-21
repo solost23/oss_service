@@ -6,7 +6,7 @@ import (
 	"github.com/go-redis/redis"
 	"github.com/gookit/slog"
 	"github.com/minio/minio-go"
-	"github.com/solost23/go_interface/gen_go/oss"
+	"github.com/solost23/protopb/gen/go/protos/oss"
 	"gorm.io/gorm"
 	"oss_service/internal/service/upload"
 )

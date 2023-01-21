@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/solost23/go_interface/gen_go/oss"
+	"github.com/solost23/protopb/gen/go/protos/oss"
 	"oss_service/internal/service"
 )
 

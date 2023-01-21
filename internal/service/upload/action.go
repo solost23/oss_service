@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/solost23/go_interface/gen_go/oss"
+	"github.com/solost23/protopb/gen/go/protos/oss"
 	"net/url"
 	"oss_service/internal/minio_storage"
 	"oss_service/internal/models"

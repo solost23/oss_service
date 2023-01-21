@@ -3,8 +3,8 @@ package upload
 import (
 	"context"
 	"fmt"
-	"github.com/solost23/go_interface/gen_go/common"
-	"github.com/solost23/go_interface/gen_go/oss"
+	"github.com/solost23/protopb/gen/go/protos/common"
+	"github.com/solost23/protopb/gen/go/protos/oss"
 	"oss_service/configs"
 	"oss_service/internal/minio_storage"
 	"oss_service/internal/models"
