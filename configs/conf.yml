@@ -1,19 +1,20 @@
 name: "oss_service"
 mode: "debug"
 time_location: "Asia/Shanghai"
+config_path: "srv/oss"
 
 consul:
-  host: "consul"
+  host: "localhost"
   port: 8500
 
-mysql:
-  dsn: "root:123@tcp(mariadb:3306)/oss_service?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai"
-  max_open_conn: 20
-  max_idle_conn: 10
-  max_conn_life_time: 100
-
-minio:
-  end_point: "minio:9000"
-  access_key_id: "minioadmin"
-  secret_access_key: "minioadmin"
-  user_ssl: false
+#mysql:
+#  dsn: "root:123@tcp(localhost:3306)/oss_service?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai"
+#  max_open_conn: 20
+#  max_idle_conn: 10
+#  max_conn_life_time: 100
+#
+#minio:
+#  end_point: "localhost:9000"
+#  access_key_id: "minioadmin"
+#  secret_access_key: "minioadmin"
+#  user_ssl: false

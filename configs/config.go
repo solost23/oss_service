@@ -4,6 +4,7 @@ type ServerConfig struct {
 	Name         string      `mapstructure:"name"`
 	Mode         string      `mapstructure:"mode"`
 	TimeLocation string      `mapstructure:"time_location"`
+	ConfigPath   string      `mapstructure:"config_path"`
 	MySQLConfig  *MySQLConf  `mapstructure:"mysql"`
 	ConsulConfig *ConsulConf `mapstructure:"consul"`
 	MinioConfig  *MinioConf  `mapstructure:"minio"`
