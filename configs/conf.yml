@@ -1,5 +1,5 @@
 name: "oss_service"
-mode: "debug"
+#mode: "debug"
 time_location: "Asia/Shanghai"
 config_path: "srv/oss"
 
